@@ -1,4 +1,6 @@
-﻿namespace StrategyPattern;
+﻿using System;
+
+namespace StrategyPattern;
 
 class Duck
 {
@@ -15,5 +17,10 @@ class Duck
     public void Display()
     {
         Console.WriteLine("This is Duck");
+    }
+
+    public void Fly()
+    {
+        Console.WriteLine("Fly...");
     }
 }
