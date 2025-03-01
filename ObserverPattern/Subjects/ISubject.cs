@@ -1,4 +1,6 @@
-﻿namespace ObserverPattern;
+﻿using ObserverPattern.Observers;
+
+namespace ObserverPattern.Subjects;
 
 public interface ISubject
 {

@@ -1,11 +1,13 @@
-﻿namespace ObserverPattern;
+﻿using ObserverPattern.Observers;
+
+namespace ObserverPattern.Subjects;
 
 public class WeatherData : ISubject
 {
-    private List<IObserver> _observers;
-    private float temperature;
-    private float humidity;
-    private float pressure;
+    private List<IObserver> _observers;    
+    public float Temperature { get; set; }
+    public float Humidity { get; set; }
+    public float Pressure { get; set; }
 
     public WeatherData()
     {
@@ -18,7 +20,7 @@ public class WeatherData : ISubject
     {
         foreach (IObserver observer in _observers)
         {
-            observer.Update(temperature, humidity, pressure);
+            observer.Update();
         }
     }
 
@@ -29,9 +31,9 @@ public class WeatherData : ISubject
 
     public void SetMeasurements(float temperature, float humidity, float pressure)
     {
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.pressure = pressure;
+        Temperature = temperature;
+        Humidity = humidity;
+        Pressure = pressure;
         MeasurementsChanged();
     }
 }
