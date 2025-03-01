@@ -16,7 +16,7 @@ public class HeatIndexDisplay : IObserver, IDisplayElement
 
     public void Display()
     {
-        Console.WriteLine($"Heat index is {ComputeHeatIndex(_temperature, _humidity)}");
+        Console.WriteLine($"Heat index is {ComputeHeatIndex(_temperature, _humidity):0.0}");
     }
 
     void IObserver.Update()

@@ -23,6 +23,6 @@ public class ForecastDisplay : IObserver, IDisplayElement
 
     public void Display()
     {
-        Console.WriteLine($"Last pressure: {lastPressure}, current pressure: {currentPressure}");
+        Console.WriteLine($"Last pressure: {lastPressure:0.0}, current pressure: {currentPressure:0.0}");
     }
 }
