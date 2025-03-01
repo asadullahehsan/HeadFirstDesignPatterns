@@ -8,14 +8,12 @@ Console.WriteLine("Weather O Rama\n\n");
 WeatherData weatherData = new WeatherData();
 #endregion
 
-
 #region Observers
 CurrentConditionsDisplay currentDisplay = new CurrentConditionsDisplay(weatherData);
 HeatIndexDisplay heatIndexDisplay = new HeatIndexDisplay(weatherData);
+ForecastDisplay forecastDisplay = new ForecastDisplay(weatherData);
 //StatisticsDisplay statisticsDisplay = new StatisticsDisplay(weatherData);
-//ForecastDisplay forecastDisplay = new ForecastDisplay(weatherData);
 #endregion
-
 
 weatherData.SetMeasurements(80, 65, 30.4f);
 weatherData.SetMeasurements(82, 70, 29.2f);
