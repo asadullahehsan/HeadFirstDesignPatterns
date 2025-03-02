@@ -1,9 +1,9 @@
 # Introduction to Design Patterns
 
-## Why am I even doing this?  
+## Why design patterns?  
 Design patterns are fundamental to writing scalable, maintainable, and efficient code. By studying them, I aim to improve my ability to design robust software architectures.
 
-## What's the benefit?  
+## What's the benefit?
 Understanding design patterns helps in:  
 - Writing reusable and modular code  
 - Improving problem-solving skills  
