@@ -23,7 +23,11 @@ jobs:
         run: |
           if [ -f .first_run_done ]; then
             # Normal operation: detect changed files
-            CHANGED_FILES=$(git diff --name-only HEAD^ HEAD | grep '\.md$' || echo "")
+            if git rev-parse HEAD^ >/dev/null 2>&1; then
+              CHANGED_FILES=$(git diff --name-only HEAD^ HEAD | grep '\.md$' || echo "")
+            else
+              CHANGED_FILES=$(find . -type f -name "*.md")
+            fi
           else
             # First run: pick up all markdown files
             CHANGED_FILES=$(find . -type f -name "*.md")
