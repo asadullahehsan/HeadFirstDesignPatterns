@@ -62,3 +62,8 @@ jobs:
               "query": "mutation { createStory(input: { title: \"'"$TITLE"'\", contentMarkdown: \"'"$(cat $file)"'\", isPublished: true }) { id } }"
             }'
           done
+          
+      - name: Push Changes
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/asadullahehsan/HeadFirstDesignPatterns.git
+          git push origin main
