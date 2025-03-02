@@ -1,0 +1,59 @@
+name: Publish Blog Posts
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get all markdown files (First Run) or changed files (Subsequent Runs)
+        id: changed-files
+        run: |
+          if [ -f .first_run_done ]; then
+            # Normal operation: detect changed files
+            CHANGED_FILES=$(git diff --name-only HEAD^ HEAD | grep '\.md$' || echo "")
+          else
+            # First run: pick up all markdown files
+            CHANGED_FILES=$(find . -type f -name "*.md")
+            touch .first_run_done
+            git add .first_run_done
+            git commit -m "Mark first run as completed"
+            git push
+          fi
+          echo "FILES=$CHANGED_FILES" >> $GITHUB_ENV
+
+      - name: Publish to platforms
+        if: env.FILES != ''
+        run: |
+          for file in $FILES; do
+            echo "Publishing $file"
+
+            TITLE=$(head -n 1 "$file") # First line as title
+
+            # Publish to Dev.to
+            curl -X POST "https://dev.to/api/articles" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ secrets.DEVTO_API_KEY }}" \
+            -d '{
+              "article": {
+                "title": "'"$TITLE"'",
+                "published": true,
+                "body_markdown": "'"$(cat $file)"'"
+              }
+            }'
+
+            # Publish to Hashnode
+            curl -X POST "https://api.hashnode.com" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: ${{ secrets.HASHNODE_API_KEY }}" \
+            -d '{
+              "query": "mutation { createStory(input: { title: \"'"$TITLE"'\", contentMarkdown: \"'"$(cat $file)"'\", isPublished: true }) { id } }"
+            }'
+          done
