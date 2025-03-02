@@ -32,7 +32,14 @@ jobs:
             git commit -m "Mark first run as completed"
             git push
           fi
-          echo "FILES=$CHANGED_FILES" >> $GITHUB_ENV
+          
+          - name: Export Changed Files
+            run: |
+              {
+                echo 'FILES<<EOF'
+                echo "${CHANGED_FILES}"
+                echo 'EOF'
+              } >> "$GITHUB_ENV"
 
       - name: Publish to platforms
         if: env.FILES != ''
