@@ -39,4 +39,8 @@ public class HeatIndexDisplay : IObserver, IDisplayElement
         return index;
     }
 
+    public void Unregister()
+    {
+        _weatherData.RemoveObserver(this);
+    }
 }

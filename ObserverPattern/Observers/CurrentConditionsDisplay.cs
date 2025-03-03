@@ -23,4 +23,9 @@ class CurrentConditionsDisplay : IObserver, IDisplayElement
     {
         Console.WriteLine($"Current conditions: {_temperature:0.0}F degrees and {_humidity:0.0}% humidity");
     }
+
+    public void Unregister()
+    {
+        _weatherData.RemoveObserver(this);
+    }
 }

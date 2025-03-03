@@ -38,4 +38,9 @@ public class StatisticsDisplay : IObserver, IDisplayElement
         }
         Display();
     }
+
+    public void Unregister()
+    {
+        _weatherData.RemoveObserver(this);
+    }
 }
