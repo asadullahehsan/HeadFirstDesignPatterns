@@ -2,13 +2,7 @@
 
 public abstract class Beverage
 {
-
-    private string description = "Unknown Beverage";
-
-    public string GetDescription()
-    {
-        return description;
-    }
+    public string Description { get; private set; } = "Unknown Beverage";
 
     public abstract double Cost();
 }
