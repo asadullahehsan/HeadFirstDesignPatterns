@@ -2,19 +2,10 @@
 
 public class Mocha : CondimentDecorator
 {
-    private readonly Beverage _beverage;
+    public Mocha(Beverage beverage) : base(beverage) { }
 
-    public Mocha(Beverage beverage)
-    {
-        _beverage = beverage;
-    }
-    public override double Cost()
-    {
-        return _beverage.Cost() + 0.20;
-    }
+    public override double Cost() => beverage.Cost() + 0.20;
 
-    public override string GetDescription()
-    {
-        return _beverage.Description + ", Mocha";
-    }
+    public override string Description => beverage.Description + ", Mocha";
+
 }

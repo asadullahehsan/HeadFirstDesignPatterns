@@ -2,20 +2,9 @@
 
 public class Whip : CondimentDecorator
 {
-    private readonly Beverage _beverage;
+    public Whip(Beverage beverage) : base(beverage) { }
 
-    public Whip(Beverage beverage)
-    {
-        _beverage = beverage;
-    }
+    public override double Cost() => beverage.Cost() + 0.10;
 
-    public override double Cost()
-    {
-        return _beverage.Cost() + 0.10;
-    }
-
-    public override string GetDescription()
-    {
-        return _beverage.Description + ", Whip";
-    }
+    public override string Description => beverage.Description + ", Whip";
 }
