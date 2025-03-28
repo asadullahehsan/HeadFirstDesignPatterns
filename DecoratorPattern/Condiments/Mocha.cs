@@ -1,4 +1,6 @@
-﻿namespace DecoratorPattern;
+﻿using DecoratorPattern.Beverages;
+
+namespace DecoratorPattern.Condiments;
 
 public class Mocha : CondimentDecorator
 {

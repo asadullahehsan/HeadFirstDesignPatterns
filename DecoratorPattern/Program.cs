@@ -1,4 +1,5 @@
-﻿using DecoratorPattern;
+﻿using DecoratorPattern.Beverages;
+using DecoratorPattern.Condiments;
 
 Console.WriteLine("C# Decorator Pattern\n");
 Console.WriteLine("StarbuzzCoffee\n\n");

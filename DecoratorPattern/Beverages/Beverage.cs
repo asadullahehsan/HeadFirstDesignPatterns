@@ -1,4 +1,4 @@
-﻿namespace DecoratorPattern;
+﻿namespace DecoratorPattern.Beverages;
 
 public abstract class Beverage
 {
